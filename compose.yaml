@@ -1,0 +1,7 @@
+services:
+  web:
+    image: wodby/apache:latest
+    volumes:
+      - ./web:/var/www/html
+    ports:
+      - 80:80
