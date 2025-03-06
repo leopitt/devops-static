@@ -13,7 +13,8 @@ jobs:
         run: |
           echo "${{ secrets.AWS_EC2_PEM }}" > private_key
           chmod 600 private_key
-      # SSH into the EC2 instance. Based on https://gist.github.com/raviagheda/c69ae5e884f4490b1af656dbd80c00dd
+      # SSH into the EC2 instance.
+      # Based on https://gist.github.com/raviagheda/c69ae5e884f4490b1af656dbd80c00dd
       - name: Connect to EC2 instance
         run: ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }} '
 
