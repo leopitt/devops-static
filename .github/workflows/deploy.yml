@@ -11,9 +11,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Create key file
         run: |
-          echo "${{ secrets.AWS_EC2_PEM }}" > aws_ec2_pem.pem
-          cat aws_ec2_pem.pem
-          chmod 600 aws_ec2_pem.pem
-      # SSH into the EC2 instance.
+          echo "${{ secrets.AWS_EC2_PEM }}" > private_key
+          chmod 600 private_key
+      # SSH into the EC2 instance. Based on https://gist.github.com/raviagheda/c69ae5e884f4490b1af656dbd80c00dd
       - name: Connect to EC2 instance
-        run: ssh -i aws_ec2_pem.pem ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }}
+        run: ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }}
