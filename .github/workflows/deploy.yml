@@ -9,16 +9,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
       - name: Create key file
         run: |
           echo "${{ secrets.AWS_EC2_PEM }}" > aws_ec2_pem.pem
-          chmod 400 aws_ec2_pem.pem
+          chmod 600 aws_ec2_pem.pem
       # SSH into the EC2 instance.
       - name: Connect to EC2 instance
         run: ssh -i aws_ec2_pem.pem ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }}
