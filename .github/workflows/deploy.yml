@@ -16,7 +16,7 @@ jobs:
       # SSH into the EC2 instance.
       # Based on https://gist.github.com/raviagheda/c69ae5e884f4490b1af656dbd80c00dd
       - name: Connect to EC2 instance
-        run: ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }} << 'EOF'
+        run: ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }} '
 
           sudo apt-get update
           sudo apt-get install ca-certificates curl
@@ -28,4 +28,4 @@ jobs:
             $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
             sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
           sudo apt-get update
-        EOF
+        '
