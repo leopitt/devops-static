@@ -12,6 +12,7 @@ jobs:
       - name: Create key file
         run: |
           echo "${{ secrets.AWS_EC2_PEM }}" > aws_ec2_pem.pem
+          cat aws_ec2_pem.pem
           chmod 600 aws_ec2_pem.pem
       # SSH into the EC2 instance.
       - name: Connect to EC2 instance
