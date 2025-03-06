@@ -17,4 +17,4 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       # SSH into the EC2 instance.
       - name: Connect to EC2 instance
-        run: ssh -i ${{ secrets.AWS_EC2_PEM }} ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }}
+        run: ssh -i "${{ secrets.AWS_EC2_PEM }}" ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }}
