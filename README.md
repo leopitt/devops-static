@@ -39,7 +39,8 @@ There is a GitHub workflow that:
 - connects the EC2 instance and stops/removes/restarts the docker containers.
 
 ## Ideas for future improvements
-- Incorporate a PHP and DB container into the docker-compose file to demonstrate a more complex setup.
+- Incorporate a DB container into the docker-compose file to demonstrate a more complex setup.
+  - Use secret keys or environment variables for the mysql connection details. 
 - Don't configure the EC2 instance every time the workflow runs. Find a more efficient way.
 - Backup the checked out code on EC2 rather than removing it.
 - Incorporate some tests into the workflow.

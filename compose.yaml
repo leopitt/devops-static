@@ -6,7 +6,7 @@ services:
     # .conf files in `./.devops/apache2/conf`.
     volumes:
       - ./web:/var/www/html
-      - ./.devops/apache2/conf:/usr/local/apache2/conf/custom
+      - ./.devops/web/conf:/usr/local/apache2/conf/custom
     environment:
       - APACHE_INCLUDE_CONF=conf/custom/*.conf
       - APACHE_VHOST_PRESET=php
@@ -17,3 +17,15 @@ services:
     image: wodby/php:latest
     volumes:
       - ./web:/var/www/html
+  db:
+    image: wodby/mariadb:latest
+    environment:
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=user
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_PASSWORD=password
+      - MYSQL_host=localhost
+    volumes:
+      - ~/.docker-volumes/devops-static/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
