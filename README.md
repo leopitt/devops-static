@@ -39,7 +39,6 @@ There is a GitHub workflow that:
 - connects the EC2 instance and stops/removes/restarts the docker containers.
 
 ## Ideas Future improvements
-- Remove the private_key file after the workflow has finished.
 - Get https access working.
 - Checkout the repository directly onto the EC2 instance rather than copying it over.
 - If copying it over, use rsync rather than scp and ignore redundant files, such as the .git directory.
