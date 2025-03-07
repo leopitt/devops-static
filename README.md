@@ -40,6 +40,7 @@ There is a GitHub workflow that:
 
 ## Ideas Future improvements
 - Get https access working.
+- Add YAML Linting.
 - Checkout the repository directly onto the EC2 instance rather than copying it over.
 - If copying it over, use rsync rather than scp and ignore redundant files, such as the .git directory.
 - Incorporate a PHP and DB container into the docker-compose file to demonstrate a more complex setup.
