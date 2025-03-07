@@ -41,6 +41,9 @@ jobs:
 
             # Install Docker Compose
             sudo apt-get install -y docker-compose
+
+            # Update permissions so we don't have to use sudo for Docker.
+            sudo usermod -aG docker $(whoami)
           EOF
       - name: Remove any existing checked out code on EC2
         run: |
