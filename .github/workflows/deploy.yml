@@ -45,14 +45,9 @@ jobs:
             # Update permissions so we don't have to use sudo for Docker.
             sudo usermod -aG docker $(whoami)
           EOF
-      - name: Remove any existing checked out code on EC2
-        run: |
-          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }} << 'EOF'
-            rm -rf ~/devops-static
-          EOF
       - name: rsync the checked out code to EC2
         run: |
-          rsync --delete -avze "ssh -i private_key" ${{ github.workspace }} ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }}:~/
+          rsync --delete --exclude ".git" -avze "ssh -i private_key" ${{ github.workspace }} ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }}:~/
       - name: Initialise the Docker containers
         run: |
           ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }} << 'EOF'
