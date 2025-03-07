@@ -9,6 +9,11 @@ services:
       - ./.devops/apache2/conf:/usr/local/apache2/conf/custom
     environment:
       - APACHE_INCLUDE_CONF=conf/custom/*.conf
+      - APACHE_VHOST_PRESET=php
     ports:
       - 80:80
       - 443:443
+  php:
+    image: wodby/php:latest
+    volumes:
+      - ./web:/var/www/html
