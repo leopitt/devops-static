@@ -38,12 +38,10 @@ There is a GitHub workflow that:
 - copies the freshly checked out code to the EC2 instance.
 - connects the EC2 instance and stops/removes/restarts the docker containers.
 
-## Ideas Future improvements
-- Get https access working.
-- Add YAML Linting.
-- Checkout the repository directly onto the EC2 instance rather than copying it over.
-- If copying it over, use rsync rather than scp and ignore redundant files, such as the .git directory.
+## Ideas for future improvements
 - Incorporate a PHP and DB container into the docker-compose file to demonstrate a more complex setup.
 - Don't configure the EC2 instance every time the workflow runs. Find a more efficient way.
 - Backup the checked out code on EC2 rather than removing it.
 - Incorporate some tests into the workflow.
+- Checkout the repository directly onto the EC2 instance rather than copying it over.
+- Get https access working.
