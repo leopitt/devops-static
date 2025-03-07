@@ -40,9 +40,10 @@ There is a GitHub workflow that:
 
 ## Ideas Future improvements
 - Remove the private_key file after the workflow has finished.
-- Don't configure the EC2 instance every time the workflow runs. Find a more efficient way.
-- Backup the checked out code on EC2 rather than removing it.
+- Get https access working.
 - Checkout the repository directly onto the EC2 instance rather than copying it over.
 - If copying it over, use rsync rather than scp and ignore redundant files, such as the .git directory.
-- Incorporate a some tests into the workflow.
 - Incorporate a PHP and DB container into the docker-compose file to demonstrate a more complex setup.
+- Don't configure the EC2 instance every time the workflow runs. Find a more efficient way.
+- Backup the checked out code on EC2 rather than removing it.
+- Incorporate some tests into the workflow.
