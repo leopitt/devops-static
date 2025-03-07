@@ -39,7 +39,6 @@ There is a GitHub workflow that:
 - connects the EC2 instance and stops/removes/restarts the docker containers.
 
 ## Ideas Future improvements
-- Use rsync rather than scp and ignore redundant files, such as the .git directory.
 - Incorporate a PHP and DB container into the docker-compose file to demonstrate a more complex setup.
 - Don't configure the EC2 instance every time the workflow runs. Find a more efficient way.
 - Backup the checked out code on EC2 rather than removing it.
