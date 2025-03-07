@@ -19,7 +19,7 @@ recommended / best practice setup.
   - Inbound HTTP access on port 80
   - All outbound requests
 
-The following environment variables are requires as secrets in the github repo:
+The following environment variables are required as secrets in the GitHub repo:
 
 - `AWS_EC2_PEM`: The private key that can be used to connect to the EC2 instance with SSH.
 - `AWS_EC2_PUBLIC_USER`: The username to use when connecting to the EC2 instance via SSH.
@@ -30,10 +30,19 @@ The following environment variables are requires as secrets in the github repo:
 The Docker Compose file defines a single service, which is an Apache container
 serving a static index.html file.
 
-There is a github workflow that:
-- checks out the repo to the github action runner (an ubuntu machine).
+There is a GitHub workflow that:
+- checks out the repo to the github action runner (an Ubuntu machine).
 - creates a private key to connect to an EC2 instance, from a secret stored in the github repo.
 - connects to an EC2 instance via SSH and installs various packages needed to run the site.
 - removes the previously checked out code from the EC2 instance.
 - copies the freshly checked out code to the EC2 instance.
 - connects the EC2 instance and stops/removes/restarts the docker containers.
+
+## Ideas Future improvements
+- Remove the private_key file after the workflow has finished.
+- Don't configure the EC2 instance every time the workflow runs. Find a more efficient way.
+- Backup the checked out code on EC2 rather than removing it.
+- Checkout the repository directly onto the EC2 instance rather than copying it over.
+- If copying it over, use rsync rather than scp and ignore redundant files, such as the .git directory.
+- Incorporate a some tests into the workflow.
+- Incorporate a PHP and DB container into the docker-compose file to demonstrate a more complex setup.
