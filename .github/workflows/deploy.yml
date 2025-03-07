@@ -63,3 +63,6 @@ jobs:
             # Start the Docker containers.
             docker-compose up -d
           EOF
+      - name: Clean up
+        run: |
+          rm private_key
