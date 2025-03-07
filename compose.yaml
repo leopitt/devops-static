@@ -1,6 +1,8 @@
 services:
   web:
     image: wodby/apache:latest
+    # If we need to customise our apache configuration, we can do by adding
+    # .conf files in `./.devops/apache2/conf`.
     volumes:
       - ./web:/var/www/html
       - ./.devops/apache2/conf:/usr/local/apache2/conf/custom
