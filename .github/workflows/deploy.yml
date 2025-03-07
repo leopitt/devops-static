@@ -40,5 +40,6 @@ jobs:
             sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
             # Clone the repo.
+            echo "Cloning the repo from git@github.com:${{ github.repository }}.git"
             git clone git@github.com:${{ github.repository }}.git
           EOF
