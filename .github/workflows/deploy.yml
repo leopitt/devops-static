@@ -18,7 +18,7 @@ jobs:
       # Server setup tasks to get it ready for hpsting the site.
       - name: Install EC2 instance dependencies
         run: |
-          ssh -o StrictHostKeyChecking=no -i /tmp/private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i /tmp/private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }} "AWS_EC2_PUBLIC_DNS='${{ secrets.AWS_EC2_PUBLIC_DNS }}' bash -s" << 'EOF'
             # Update packages and install curl
             sudo apt-get update
             sudo apt-get install -y ca-certificates curl
@@ -47,7 +47,7 @@ jobs:
             sudo usermod -aG docker $(whoami)
           
             # Create certificates.
-            sudo openssl req -x509 -days 365 -newkey rsa:2048 -keyout /etc/ssl/certs/devops-static-https.key -out /etc/ssl/certs/devops-static-https.crt -nodes -subj "/C=GB/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=CommonNameOrHostname"
+            sudo openssl req -x509 -days 365 -newkey rsa:2048 -keyout /etc/ssl/certs/devops-static-https.key -out /etc/ssl/certs/devops-static-https.crt -nodes -subj "/C=GB/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=$AWS_EC2_PUBLIC_DNS"
           EOF
       - name: rsync the checked out code to EC2
         run: |
