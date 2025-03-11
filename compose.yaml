@@ -6,9 +6,9 @@ services:
     # .conf files in `./.devops/apache2/conf`.
     volumes:
       - ./web:/var/www/html
-      - ./.devops/web/conf:/usr/local/apache2/conf/custom
+      - ./.devops/web/conf/custom-httpd-ssl.conf:/usr/local/apache2/conf/conf.d/custom-httpd-ssl.conf
+      - ./.devops/web/certs:/etc/ssl/certs
     environment:
-      - APACHE_INCLUDE_CONF=conf/custom/*.conf
       - APACHE_VHOST_PRESET=php
     ports:
       - 80:80
