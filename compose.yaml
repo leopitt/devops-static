@@ -7,7 +7,7 @@ services:
     volumes:
       - ./web:/var/www/html
       - ./.devops/web/conf/custom-httpd-ssl.conf:/usr/local/apache2/conf/conf.d/custom-httpd-ssl.conf
-      - ./.devops/web/certs:/etc/ssl/certs
+      - /etc/ssl/certs/:/etc/ssl/certs
     environment:
       - APACHE_VHOST_PRESET=php
     ports:
