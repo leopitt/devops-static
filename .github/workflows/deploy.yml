@@ -47,7 +47,7 @@ jobs:
             sudo usermod -aG docker $(whoami)
           
             # Create certificates.
-            openssl req -x509 -days 365 -newkey rsa:2048 -keyout /etc/ssl/certs/https.key -out /etc/ssl/certs/https.crt -nodes -subj "/C=GB/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=CommonNameOrHostname"
+            sudo openssl req -x509 -days 365 -newkey rsa:2048 -keyout /etc/ssl/certs/https.key -out /etc/ssl/certs/https.crt -nodes -subj "/C=GB/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=CommonNameOrHostname"
           EOF
       - name: rsync the checked out code to EC2
         run: |
