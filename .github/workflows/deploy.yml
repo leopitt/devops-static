@@ -15,6 +15,7 @@ jobs:
           chmod 600 /tmp/private_key
       # SSH into the EC2 instance.
       # Based on https://gist.github.com/raviagheda/c69ae5e884f4490b1af656dbd80c00dd
+      # Server setup tasks to get it ready for hpsting the site.
       - name: Install EC2 instance dependencies
         run: |
           ssh -o StrictHostKeyChecking=no -i /tmp/private_key ${{ secrets.AWS_EC2_PUBLIC_USER }}@${{ secrets.AWS_EC2_PUBLIC_DNS }} << 'EOF'
@@ -44,6 +45,9 @@ jobs:
 
             # Update permissions so we don't have to use sudo for Docker.
             sudo usermod -aG docker $(whoami)
+          
+            # Create certificates.
+            openssl req -x509 -days 365 -newkey rsa:2048 -keyout /etc/ssl/certs/https.key -out /etc/ssl/certs/https.crt -nodes -subj "/C=GB/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=CommonNameOrHostname"
           EOF
       - name: rsync the checked out code to EC2
         run: |
